@@ -1,18 +1,17 @@
 package de.tij.cubecraftlauncher.components;
 
+import de.tij.cubecraftlauncher.utils.Vars;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.RoundRectangle2D;
 
-import de.tij.cubecraftlauncher.utils.Vars;
+public class InstallButton extends JButton {
 
-public class LaunchGameButton extends JButton {
+    private Color lButtonColor;
 
-    private boolean active = true;
-
-    public LaunchGameButton(String text, int x, int y, int width, int height) {
+    public InstallButton(String text, int x, int y, int width, int height) {
         super(text);
 
         Dimension size = new Dimension(width, height);
@@ -23,50 +22,34 @@ public class LaunchGameButton extends JButton {
         setFocusPainted(false);
         setForeground(Color.WHITE);
 
-        if(isActive()) {
-            lButtonColor = Vars.LAUNCH_COLOR;
-        } else {
-            lButtonColor = Color.gray;
-        }
+        lButtonColor = Vars.INSTALL_COLOR;
 
         setContentAreaFilled(false);
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(isActive()) {
-                    super.mouseClicked(e);
-                    lButtonColor = Vars.LAUNCH_COLOR.darker();
-                }
+                super.mouseClicked(e);
+                lButtonColor = Vars.INSTALL_COLOR.darker();
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                if(isActive()) {
-                    super.mouseEntered(e);
-                    lButtonColor = Vars.LAUNCH_COLOR.brighter();
-                }
+                super.mouseEntered(e);
+                lButtonColor = Vars.INSTALL_COLOR.brighter();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                if(isActive()) {
-                    super.mouseExited(e);
-                    lButtonColor = Vars.LAUNCH_COLOR;
-                }
+                super.mouseExited(e);
+                lButtonColor = Vars.INSTALL_COLOR;
             }
         });
     }
 
-    private Color lButtonColor;
-
     @Override
     protected void paintComponent(Graphics g) {
-        if(isActive()) {
-            g.setColor(lButtonColor);
-        } else {
-            g.setColor(Color.gray);
-        }
+        g.setColor(lButtonColor);
         g.fillRoundRect(0, 0, getSize().width-1, getSize().height-1, 20,20);
         super.paintComponent(g);
         repaint();
@@ -77,13 +60,5 @@ public class LaunchGameButton extends JButton {
         g.setColor(getForeground());
         g.drawRoundRect(0,0,getSize().width-1,getSize().height-1, 20, 20);
         repaint();
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean isActive() {
-        return active;
     }
 }

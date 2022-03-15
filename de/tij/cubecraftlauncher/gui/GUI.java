@@ -1,5 +1,6 @@
 package de.tij.cubecraftlauncher.gui;
 
+import de.tij.cubecraftlauncher.components.InstallButton;
 import de.tij.cubecraftlauncher.components.LaunchGameButton;
 import de.tij.cubecraftlauncher.components.TitlebarButton;
 import de.tij.cubecraftlauncher.utils.UpdateManager;
@@ -41,6 +42,7 @@ public class GUI {
     public TitlebarButton close;
     public TitlebarButton minimize;
     public LaunchGameButton btn;
+    public InstallButton installBtn;
 
     @SuppressWarnings("deprecated")
     private void addComponents() {
@@ -80,6 +82,9 @@ public class GUI {
 
         btn = new LaunchGameButton("STARTEN", WIDTH/2-300/2, HEIGHT-75, 300, 50);
         pane.add(btn, new Integer(1));
+
+        installBtn = new InstallButton("Installieren", WIDTH/2 - 180/2, HEIGHT-(75+30+10), 180, 30);
+        pane.add(installBtn, new Integer(1));
 
         window.add(pane);
     }

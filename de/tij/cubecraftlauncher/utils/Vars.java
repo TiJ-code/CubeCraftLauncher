@@ -13,4 +13,7 @@ public class Vars {
 
     // LAUNCH BUTTON
     public final static Color LAUNCH_COLOR = new Color(0,150,0);
+
+    // INSTALL BUTTON
+    public final static Color INSTALL_COLOR = new Color(80, 80, 150);
 }
